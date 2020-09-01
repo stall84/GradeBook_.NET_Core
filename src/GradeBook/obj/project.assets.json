@@ -8,26 +8,24 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\stall\\.nuget\\packages\\": {}
+    "/Users/MES/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\stall\\gradebook\\src\\GradeBook\\GradeBook.csproj",
+      "projectUniqueName": "/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/GradeBook.csproj",
       "projectName": "GradeBook",
-      "projectPath": "C:\\Users\\stall\\gradebook\\src\\GradeBook\\GradeBook.csproj",
-      "packagesPath": "C:\\Users\\stall\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\stall\\gradebook\\src\\GradeBook\\obj\\",
+      "projectPath": "/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/GradeBook.csproj",
+      "packagesPath": "/Users/MES/.nuget/packages/",
+      "outputPath": "/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\stall\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/MES/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -58,7 +56,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.302/RuntimeIdentifierGraph.json"
       }
     }
   }
