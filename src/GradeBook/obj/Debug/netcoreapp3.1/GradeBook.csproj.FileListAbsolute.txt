@@ -23,3 +23,8 @@ C:/Users/stall/gradebook/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.genrunt
 /Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.dll
 /Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.pdb
 /Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.genruntimeconfig.cache
+/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/bin/Debug/netcoreapp3.1/xunit.abstractions.dll
+/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/bin/Debug/netcoreapp3.1/xunit.assert.dll
+/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/bin/Debug/netcoreapp3.1/xunit.core.dll
+/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/bin/Debug/netcoreapp3.1/xunit.execution.dotnet.dll
+/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/obj/Debug/netcoreapp3.1/GradeBook.csproj.CopyComplete
