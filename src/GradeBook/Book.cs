@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace GradeBook
 {
 
-    class Book
+    public class Book
     {
         // Explicit Constructor
         // Constructor must have same name as class 
@@ -17,6 +17,7 @@ namespace GradeBook
             this.name = name;
 
         }
+        // METHODS
         public void AddGrade(double grade)
         {
             grades.Add(grade);
@@ -48,6 +49,7 @@ namespace GradeBook
             Console.WriteLine($"The highest grade is: {highGrade}");
 
         }
+        // FIELDS 
 
         // Using the static keyword on these fields would make them inaccessible from any object instantiations (new's) .. and would make them available
         // only on the Class type (Book).. This kind of defeats the purpose of object-oriented programming and should only be used in rare circumstances.

@@ -1,0 +1,3 @@
+# Ignoring the binary folder because it's populated with about a million dll files at test-run
+
+test/GradeBook.Tests/bin
