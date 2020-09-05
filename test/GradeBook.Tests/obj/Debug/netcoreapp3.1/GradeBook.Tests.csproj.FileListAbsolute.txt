@@ -94,3 +94,5 @@
 /Users/MES/C#_Projects/GradeBook_.NET_Core/test/GradeBook.Tests/obj/Debug/netcoreapp3.1/GradeBook.Tests.dll
 /Users/MES/C#_Projects/GradeBook_.NET_Core/test/GradeBook.Tests/obj/Debug/netcoreapp3.1/GradeBook.Tests.pdb
 /Users/MES/C#_Projects/GradeBook_.NET_Core/test/GradeBook.Tests/obj/Debug/netcoreapp3.1/GradeBook.Tests.genruntimeconfig.cache
+/Users/MES/C#_Projects/GradeBook_.NET_Core/test/GradeBook.Tests/bin/Debug/netcoreapp3.1/GradeBook.dll
+/Users/MES/C#_Projects/GradeBook_.NET_Core/test/GradeBook.Tests/bin/Debug/netcoreapp3.1/GradeBook.pdb

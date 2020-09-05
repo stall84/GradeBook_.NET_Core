@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace GradeBook
 {
 
+    // You must specify 'public' access modifier on the class or it will only be available 'internal' within the project 
     public class Book
     {
         // Explicit Constructor
@@ -22,32 +23,37 @@ namespace GradeBook
         {
             grades.Add(grade);
         }
-
-        public void ShowStatistics()
+        // We have changed the original 'showstatistics' method to 'getstatistics' that now instead of returning void
+        // with display, now it will more specifically return an object of type Statistics (which we've defined in Statistics.cs)
+        // This way we have separated responsibilities, minified and modularized our method so that it's not
+        // trying to 'do too much'
+        public Statistics GetStatistics()
         {
 
             // We are going to compare all of the grades in the grades List by looping through. To determine the highest and lowest grades we're
             // first going to initialize their variable-holders to the lowest and highest possible double values possible. That way when the loop starts,
             // the first value in the loop will have to be higher or lower respectively and thus stored in the variable, till the next value is compared.
             // this is a more sure and complete method than setting them to just zero.
-            double listSum = 0;
-            int elems = grades.Count;
-            double highGrade = double.MinValue;
-            double lowGrade = double.MaxValue;
+            var result = new Statistics();
+            // result here instantiates (for return from method) an object of Type Statistics (Statistics.cs)
+            // this allows us to save the soon-to-be computed values into the specific fields on the Statistics class
+            result.Average = 0.0;
+            result.High = double.MinValue;
+            result.Low = double.MaxValue;
 
-            foreach (double num in grades)
+            foreach (double grade in grades)
             {
-                // Math.Max/Min will take two params. the current number/value in List being iterated over, and the current value for their high/low-grade variable.
+                // Math.Max/Min will take two params. the current gradeber/value in List being iterated over, and the current value for their high/low-grade variable.
                 // Will retun into that variable the higher or lower of the two.
-                highGrade = Math.Max(num, highGrade);
-                lowGrade = Math.Min(num, lowGrade);
-                listSum += num;
+                result.High = Math.Max(grade, result.High);
+                result.Low = Math.Min(grade, result.Low);
+                result.Average += grade;
             }
-            var listResult = listSum / elems;
-            Console.WriteLine($"The average grade is: {listResult:N1}");
-            Console.WriteLine($"The lowest grade is: {lowGrade}");
-            Console.WriteLine($"The highest grade is: {highGrade}");
+            result.Average /= grades.Count;
 
+            // Now instead of writing/displaying the computed statistics out to the console, or wherever, we've
+            // modularized this method to only compute and RETURN the stats. So use return to return the Statistics object (result) here.
+            return result;
         }
         // FIELDS 
 
