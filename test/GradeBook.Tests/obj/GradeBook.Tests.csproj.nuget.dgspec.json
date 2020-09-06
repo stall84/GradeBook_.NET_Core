@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/MES/C#_Projects/GradeBook_.NET_Core/test/GradeBook.Tests/GradeBook.Tests.csproj": {}
+    "/Users/MES/C#_Projects/gradebook/test/GradeBook.Tests/GradeBook.Tests.csproj": {}
   },
   "projects": {
-    "/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/GradeBook.csproj": {
+    "/Users/MES/C#_Projects/gradebook/src/GradeBook/GradeBook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/GradeBook.csproj",
+        "projectUniqueName": "/Users/MES/C#_Projects/gradebook/src/GradeBook/GradeBook.csproj",
         "projectName": "GradeBook",
-        "projectPath": "/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/GradeBook.csproj",
+        "projectPath": "/Users/MES/C#_Projects/gradebook/src/GradeBook/GradeBook.csproj",
         "packagesPath": "/Users/MES/.nuget/packages/",
-        "outputPath": "/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/obj/",
+        "outputPath": "/Users/MES/C#_Projects/gradebook/src/GradeBook/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/MES/.nuget/NuGet/NuGet.Config"
@@ -60,14 +60,14 @@
         }
       }
     },
-    "/Users/MES/C#_Projects/GradeBook_.NET_Core/test/GradeBook.Tests/GradeBook.Tests.csproj": {
+    "/Users/MES/C#_Projects/gradebook/test/GradeBook.Tests/GradeBook.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/MES/C#_Projects/GradeBook_.NET_Core/test/GradeBook.Tests/GradeBook.Tests.csproj",
+        "projectUniqueName": "/Users/MES/C#_Projects/gradebook/test/GradeBook.Tests/GradeBook.Tests.csproj",
         "projectName": "GradeBook.Tests",
-        "projectPath": "/Users/MES/C#_Projects/GradeBook_.NET_Core/test/GradeBook.Tests/GradeBook.Tests.csproj",
+        "projectPath": "/Users/MES/C#_Projects/gradebook/test/GradeBook.Tests/GradeBook.Tests.csproj",
         "packagesPath": "/Users/MES/.nuget/packages/",
-        "outputPath": "/Users/MES/C#_Projects/GradeBook_.NET_Core/test/GradeBook.Tests/obj/",
+        "outputPath": "/Users/MES/C#_Projects/gradebook/test/GradeBook.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/MES/.nuget/NuGet/NuGet.Config"
@@ -81,8 +81,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/GradeBook.csproj": {
-                "projectPath": "/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/GradeBook.csproj"
+              "/Users/MES/C#_Projects/gradebook/src/GradeBook/GradeBook.csproj": {
+                "projectPath": "/Users/MES/C#_Projects/gradebook/src/GradeBook/GradeBook.csproj"
               }
             }
           }
