@@ -20,6 +20,7 @@ namespace GradeBook.Tests
             Assert.Equal(85.6, result.Average, 1);      // Adding 3rd parameter of decimal place precision to avoid fail test on repeating float decimal
             Assert.Equal(90.5, result.High, 1);
             Assert.Equal(77.3, result.Low, 1);
+            Assert.Equal('B', result.Letter);
         }
     }
 }
