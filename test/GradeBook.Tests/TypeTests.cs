@@ -6,6 +6,19 @@ namespace GradeBook.Tests
     public class TypeTests
     {
         [Fact]
+        public void DoWhileCheck()
+        {
+            Book bookCheck = new Book("Georgie's Asshole");
+            bookCheck.AddGrade(98.1);
+            bookCheck.AddGrade(77.5);
+            bookCheck.AddGrade(73.2);
+
+            var result = bookCheck.GetStatistics();
+
+            Assert.Equal(73.2, result.Low, 1);
+        }
+
+        [Fact]
         public void StringsBehaveLikeValueTypes()
         {
             string name = "Michael";
