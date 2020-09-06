@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bPBm+EkeiUMB3hmqMKReo0H1GiIpP9Ey7kAWtysLww8WIhNXKtF4M88CbBHRFbeV6b/umNHnAq5PTAUZ0j/5Fw==",
+  "dgSpecHash": "dJMphH+waACfJyT8hrd7au/a63UxgBlUZ0Wd3eaWagVQd8s/auP/93RVMsG11fYUgdZidL6duLWfFTNW+EzWSg==",
   "success": true,
-  "projectFilePath": "/Users/MES/C#_Projects/GradeBook_.NET_Core/src/GradeBook/GradeBook.csproj",
+  "projectFilePath": "/Users/MES/C#_Projects/gradebook/src/GradeBook/GradeBook.csproj",
   "expectedPackageFiles": [
     "/Users/MES/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/Users/MES/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",

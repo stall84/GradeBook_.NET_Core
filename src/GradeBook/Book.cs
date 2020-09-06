@@ -15,13 +15,20 @@ namespace GradeBook
             // If you want to have a field named the same name as a parameter, as in the case of 'name' here
             // You'll have to use the 'this' keyword to tell the compiler you mean this object's field
             grades = new List<double>();
-            this.name = name;
+            this.Name = name;
 
         }
         // METHODS
         public void AddGrade(double grade)
         {
-            grades.Add(grade);
+            if (grade >= 0 && grade <= 100)
+            {
+                grades.Add(grade);
+            }
+            else
+            {
+                Console.WriteLine("Invalid grade value");
+            }
         }
         // We have changed the original 'showstatistics' method to 'getstatistics' that now instead of returning void
         // with display, now it will more specifically return an object of type Statistics (which we've defined in Statistics.cs)
@@ -62,7 +69,7 @@ namespace GradeBook
         // Otherwise your fields should be defined as 'instance' occuring like below where a new object has to be instantiated for them to be used. 
         // thus keeping them 'encapsulated' and sealed off from the outside programming world (safer).
         List<double> grades;
-        string name;
+        public string Name;
 
     }
 
