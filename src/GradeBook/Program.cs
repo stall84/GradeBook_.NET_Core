@@ -11,8 +11,8 @@ namespace GradeBook
             // Instantiating new object of class Book (Book.cs). A (required) input parameter is the
             // name of the book 
             var book = new Book("Michael's Gradebook");
-            book.AddGrade(90.2);
-            book.AddGrade(95.3);
+            book.AddGrade(80.2);
+            book.AddGrade(82.3);
             book.AddGrade(98.2);
 
             var stats = book.GetStatistics();

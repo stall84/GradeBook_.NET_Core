@@ -47,15 +47,19 @@ namespace GradeBook
             result.Average = 0.0;
             result.High = double.MinValue;
             result.Low = double.MaxValue;
-
-            foreach (double grade in grades)
+            var index = 0;
+            do
             {
                 // Math.Max/Min will take two params. the current gradeber/value in List being iterated over, and the current value for their high/low-grade variable.
                 // Will retun into that variable the higher or lower of the two.
-                result.High = Math.Max(grade, result.High);
-                result.Low = Math.Min(grade, result.Low);
-                result.Average += grade;
-            }
+                result.High = Math.Max(grades[index], result.High);
+                result.Low = Math.Min(grades[index], result.Low);
+                result.Average += grades[index];
+                index++;
+            } while (index < grades.Count);
+
+
+
             result.Average /= grades.Count;
 
             // Now instead of writing/displaying the computed statistics out to the console, or wherever, we've
@@ -68,7 +72,7 @@ namespace GradeBook
         // only on the Class type (Book).. This kind of defeats the purpose of object-oriented programming and should only be used in rare circumstances.
         // Otherwise your fields should be defined as 'instance' occuring like below where a new object has to be instantiated for them to be used. 
         // thus keeping them 'encapsulated' and sealed off from the outside programming world (safer).
-        List<double> grades;
+        public List<double> grades;
         public string Name;
 
     }
