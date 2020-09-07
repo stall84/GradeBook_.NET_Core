@@ -31,7 +31,7 @@ namespace GradeBook.Tests
         [Fact]
         public void DoWhileCheck()
         {
-            Book bookCheck = new Book("Georgie's Asshole");
+            InMemoryBook bookCheck = new InMemoryBook("Georgie's Asshole");
             bookCheck.AddGrade(98.1);
             bookCheck.AddGrade(77.5);
             bookCheck.AddGrade(73.2);
@@ -87,7 +87,7 @@ namespace GradeBook.Tests
             // Assert Section
             Assert.Equal("New Name", book1.Name);
         }
-        private void SetName(Book book, string name)
+        private void SetName(InMemoryBook book, string name)
         {
             book.Name = name;        // re-changed setter to public so that name can be changed outside after instantiation
 
@@ -107,9 +107,9 @@ namespace GradeBook.Tests
             // Assert Section
             Assert.Equal("Book 1", book1.Name);
         }
-        private void GetBookSetName(Book book, string name)
+        private void GetBookSetName(InMemoryBook book, string name)
         {
-            book = new Book(name);
+            book = new InMemoryBook(name);
             Console.WriteLine($"Book Name: {book.Name}");
         }
         [Fact]
@@ -127,10 +127,10 @@ namespace GradeBook.Tests
             // Assert Section
             Assert.Equal("New Name", book1.Name);
         }
-        private void GetBookSetNameByRef(ref Book book, string name)
+        private void GetBookSetNameByRef(ref InMemoryBook book, string name)
         {   // By adding a 'ref' keyword in front of the parameter we can force C# to pass the 
             // reference instead of the value
-            book = new Book(name);
+            book = new InMemoryBook(name);
             Console.WriteLine($"Book Name: {book.Name}");
         }
 
@@ -148,9 +148,9 @@ namespace GradeBook.Tests
             Assert.Equal("Book 2", book2.Name);
 
         }
-        private Book GetBook(string name)
+        private InMemoryBook GetBook(string name)
         {
-            return new Book(name);
+            return new InMemoryBook(name);
         }
 
         [Fact]
