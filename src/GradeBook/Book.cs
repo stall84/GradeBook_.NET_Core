@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 
 namespace GradeBook
@@ -10,11 +11,111 @@ namespace GradeBook
     // 1st param by convention is who is sending the delegate. 2nd param is some form of event argument
     public delegate void GradeAddedDelegate(object sender, EventArgs args);
     // You must specify 'public' access modifier on the class or it will only be available 'internal' within the project 
-    public class Book
+
+    // Constructing a NamedObject class with the same properties as the original property defined below
+    // We will have our Book class inherit from this class, transferring the properties to it. 
+    // This would usually be held in it's own file.
+    public class NamedObject
     {
-        // Explicit Constructor
+        public NamedObject(string name)
+        {
+            Name = name;
+        }
+
+        public string Name
+        {
+            get;
+            set;
+        }
+    }
+    // Creating Interface Type. Explicitly describes the members that should be available on the specific type.
+    // Want's to define abstractly the members that will be available for anything that implements this interface.
+    // The interface type creates the purest form of the Type you want to create. In this case a Book
+    // Far more common than abstract classes.  Interface inheritance added to types by using comma as seen below in BookBase
+    // The interface is a pure-abstraction that defines the capability of ANY book where you want to store graes and compute stats, etc
+    public interface IBook
+    {
+        void AddGrade(double grade);
+        Statistics GetStatistics();
+        string Name { get; }
+        event GradeAddedDelegate GradeAdded;
+
+    }
+
+    // What we're doing is creating an abstract Book Base Class. It's abstract because the methods
+    // (like add grade) can be defined further by the instance of the inheriting Class later on . 
+    // In this example we're going to change our original Book Class to 'InMemoryBook'. Using the polymorphism properties
+    // of objects to take a base object type (BookBase) and then further/later define whether that book object
+    // will store the grades in memory, over the network, on the hard drive, etc.
+    public abstract class BookBase : NamedObject, IBook
+    {   // We create this base class of Book that will always take a name at creation (inherited from NamedObject)
+        // And will always have an AddGrade method (made abstract so that inheriting class can override with custom method)
+        public BookBase(string name) : base(name)
+        {
+        }
+
+        public abstract event GradeAddedDelegate GradeAdded;
+
+        public abstract void AddGrade(double grade);
+
+        public abstract Statistics GetStatistics();
+
+    }
+
+    public class DiskBook : BookBase
+    {
+        public DiskBook(string name) : base(name)
+        {
+        }
+
+        public override event GradeAddedDelegate GradeAdded;
+
+        public override void AddGrade(double grade)
+        {
+            if (grade >= 0 && grade <= 100)
+            {
+                // Using a using statement here to wrap this object creation. 
+                // Creates a try-finally that makes sure to run the dispose below           // The AppendText method on the File Class Creates or appends a File .(We pass the Name of our Book in String Interpolation to .txt file)
+                // Using using block we no longer need to explicitly close or dispose of stream // Then returns a StreamWriter object (which we must save in variable)
+                using (var writer = File.AppendText($"{this.Name}.txt"))                      // CAUTION that AppendText simply Opens the file, You have to explicitly CLOSE it to avoid IO Exception
+                {                                                                           // Now we have a 'writer' object that we have numerous methods off of (StreamWriter class) we use WriteLine to write String to File.
+                    writer.WriteLine(grade);
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
+                }
+            }
+            else
+            {
+                throw new ArgumentException($"The grade input is invalid {nameof(grade)}");
+            }
+
+        }
+
+        public override Statistics GetStatistics()
+        {
+            var result = new Statistics();
+
+            using (var reader = File.OpenText($"{this.Name}.txt"))
+            {
+                var line = reader.ReadLine();
+                while (line != null)
+                {
+                    var number = double.Parse(line);
+                    result.Add(number);
+                    line = reader.ReadLine();
+                }
+            }
+
+            return result;
+        }
+    }
+    public class InMemoryBook : BookBase     // Class InMemoryBook inherits the properties (and methods if there were any) from BookBase class which inherits from NamedObject class
+    {
+        // CONSTRUCTOR
         // Constructor must have same name as class 
-        public Book(string name)
+        public InMemoryBook(string name) : base(name)
         {   // This ensures every time you instantiate a Book class into an object,
             // The state-holding-field grades will also be instantiated to prevent the null-ref-error
             // If you want to have a field named the same name as a parameter, as in the case of 'name' here
@@ -57,11 +158,12 @@ namespace GradeBook
                     break;
             }
         }
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)                  // Using OVERRIDE keyword to make this method definition override inherited abstract method (from BookBase)
         {
             if (grade >= 0 && grade <= 100)
             {
                 grades.Add(grade);
+                // We're adding a Delegate here just for demonstration purposes. Usually will not be used in ASP.NET framework
                 // To invoke the delegate GradeAdded here when a grade is added. First check if delegate is null or not
                 // If it's null, there's no point in invoking because nothing/no-method is 'listening' for the event
                 if (GradeAdded != null)
@@ -87,7 +189,7 @@ namespace GradeBook
         // with display, now it will more specifically return an object of type Statistics (which we've defined in Statistics.cs)
         // This way we have separated responsibilities, minified and modularized our method so that it's not
         // trying to 'do too much'
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()               // We override the Base Classes implementation members
         {
 
             // We are going to compare all of the grades in the grades List by looping through. To determine the highest and lowest grades we're
@@ -97,44 +199,14 @@ namespace GradeBook
             var result = new Statistics();
             // result here instantiates (for return from method) an object of Type Statistics (Statistics.cs)
             // this allows us to save the soon-to-be computed values into the specific fields on the Statistics class
-            result.Average = 0.0;
-            result.High = double.MinValue;
-            result.Low = double.MaxValue;
+
             for (var i = 0; i < grades.Count; i++)
             {
-                // Math.Max/Min will take two params. the current gradeber/value in List being iterated over, and the current value for their high/low-grade variable.
-                // Will retun into that variable the higher or lower of the two.
-                result.Low = Math.Min(grades[i], result.Low);
-                result.High = Math.Max(grades[i], result.High);
-                result.Average += grades[i];
+                result.Add(grades[i]);
 
             }
-            result.Average /= grades.Count;
-            // After we've computed the average (and lowest/highest) grades, take that average and 
-            // switch-case it to return a letter grade
-            switch (result.Average)
-            {   // We're using the 'enhanced' features of switch statements in C# that allow 
-                // assignment of a variable 'd' to the input value (result.Average)
-                // then using the 'when' keyword to evaluate a condition, which if condition returns true
-                // then the code in the case will be executed. In this case we're assigning the letter grade to 
-                // the result object 
-                case var d when d >= 90.0:
-                    result.Letter = 'A';
-                    break;
-                case var d when d >= 80.0:
-                    result.Letter = 'B';
-                    break;
-                case var d when d >= 70.0:
-                    result.Letter = 'C';
-                    break;
-                case var d when d >= 60.0:
-                    result.Letter = 'D';
-                    break;
-                default:
-                    result.Letter = 'F';
-                    break;
 
-            }
+
             // Now instead of writing/displaying the computed statistics out to the console, or wherever, we've
             // modularized this method to only compute and RETURN the stats. So use return to return the Statistics object (result) here.
             return result;
@@ -168,13 +240,13 @@ namespace GradeBook
         //     }
         // }
         // Microsoft more recently made creating properties with getters/setters easier by allowing you to write simply:
-        public string Name
-        {
-            get;
-            set;
-            // private set;                   // If using the private key - Once the book object is instantiated with the name in the constructor
-            // the name field will no longer be alterable
-        }
+        // public string Name
+        // {
+        //     get;
+        //     set;
+        //     // private set;                   // If using the private key - Once the book object is instantiated with the name in the constructor
+        //     // the name field will no longer be alterable
+        // }
         // This will automatically create the private backing field so that you don't have to do that 
         // This also allows you flexibility to restrict the get or set methods to private to further encapsulate the code
 
@@ -194,12 +266,12 @@ namespace GradeBook
         // Consts can be set as public so that they can be accessed outside. 
         //They act like a static method so have to be called on the class, not the instance object
 
-        public const string CATEGORY = "Science";
+        //public const string CATEGORY = "Science";
 
         // EVENTS
 
         // Members of classes. In our case here it will be of type GradeAddedDelegate we created above
-        public event GradeAddedDelegate GradeAdded;
+        public override event GradeAddedDelegate GradeAdded;
 
     }
 

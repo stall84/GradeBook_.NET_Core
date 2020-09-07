@@ -13,12 +13,31 @@ namespace GradeBook
             Console.WriteLine("Enter the name of the gradebook: ");
             var bookName = Console.ReadLine();
             // Instantiate book object from Book (Book.cs) class
-            var book = new Book(bookName);
+            // var book = new InMemoryBook(bookName);               // commenting out to work with DiskBook class
+            IBook book = new DiskBook(bookName);
             // Here we want to Handle the GradeAdded Event that we delegated in Book.cs. 
             book.GradeAdded += OnGradeAdded;  // Here you add on (+=) the method OnGradeAdded to the delegate GradeAdded.
                                               // So everytime the Book raises the event GradeAdded, the OnGradeAdded method will be invoked.
                                               // Multicast delegates can addTo(+=) or subFrom(-=) as many methods as you like.
                                               // Create boolean variable to flag when user input is finished
+            EnterGrades(book);
+
+            var stats = book.GetStatistics();
+
+            // Console.WriteLine($"The Category constant is: {InMemoryBook.CATEGORY}");
+            Console.WriteLine($"The name of this gradebook is: {book.Name}");
+            Console.WriteLine($"The lowest grade is: {stats.Low}");
+            Console.WriteLine($"The highest grade is: {stats.High}");
+            Console.WriteLine($"The average grade is: {stats.Average:N1}");
+            Console.WriteLine($"The average letter grade is: {stats.Letter}");
+
+        }
+
+        private static void EnterGrades(IBook book)       // We've changed the paramter type to the BookBase class, because now with the  
+                                                          // abstract AddGrade method member of that Base class, it's up to the runtime 
+                                                          // instance to determine where (or whatever Polymorphic condition) that gradebook 
+                                                          // will be stored (InMemory in this case).
+        {
             var isDone = false;
             while (!isDone)
             {
@@ -60,19 +79,8 @@ namespace GradeBook
 
 
             }
-
-
-
-            var stats = book.GetStatistics();
-
-            Console.WriteLine($"The Category constant is: {Book.CATEGORY}");
-            Console.WriteLine($"The name of this gradebook is: {book.Name}");
-            Console.WriteLine($"The lowest grade is: {stats.Low}");
-            Console.WriteLine($"The highest grade is: {stats.High}");
-            Console.WriteLine($"The average grade is: {stats.Average:N1}");
-            Console.WriteLine($"The average letter grade is: {stats.Letter}");
-
         }
+
         // To interact with the static Main method above, you must have another static method
         static void OnGradeAdded(object sender, EventArgs e)
         {
