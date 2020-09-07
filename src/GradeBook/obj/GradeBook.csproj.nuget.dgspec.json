@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/MES/C#_Projects/gradebook/src/GradeBook/GradeBook.csproj": {}
+    "/Users/MES/C_Sharp_Projects/gradebook/src/GradeBook/GradeBook.csproj": {}
   },
   "projects": {
-    "/Users/MES/C#_Projects/gradebook/src/GradeBook/GradeBook.csproj": {
+    "/Users/MES/C_Sharp_Projects/gradebook/src/GradeBook/GradeBook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/MES/C#_Projects/gradebook/src/GradeBook/GradeBook.csproj",
+        "projectUniqueName": "/Users/MES/C_Sharp_Projects/gradebook/src/GradeBook/GradeBook.csproj",
         "projectName": "GradeBook",
-        "projectPath": "/Users/MES/C#_Projects/gradebook/src/GradeBook/GradeBook.csproj",
+        "projectPath": "/Users/MES/C_Sharp_Projects/gradebook/src/GradeBook/GradeBook.csproj",
         "packagesPath": "/Users/MES/.nuget/packages/",
-        "outputPath": "/Users/MES/C#_Projects/gradebook/src/GradeBook/obj/",
+        "outputPath": "/Users/MES/C_Sharp_Projects/gradebook/src/GradeBook/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/MES/.nuget/NuGet/NuGet.Config"

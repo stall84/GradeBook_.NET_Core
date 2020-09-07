@@ -3,8 +3,31 @@ using Xunit;
 
 namespace GradeBook.Tests
 {
+    // We're going to create a Delegate type here to demonstrate.
+    // It's a type that assocites variables with methods
+    // This delegate will take in a string and return a string
+    // Delegates can be very powerful in that you can assign a variable (like 'log' below)
+    // and then have that variable point to multiple methods. 
+    public delegate string WriteLogDelegate(string logMessage);
     public class TypeTests
-    {
+    {   // Fact attribute used by test-runner to find test methods  https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test 
+        [Fact]
+        public void WriteLogDelegateCanPointToMethod()
+        {
+            WriteLogDelegate log;
+
+            log = ReturnMessage;  // shorthand way of:  log = new WriteLogDelegate(ReturnMessage);
+
+            var result = log("Hello");
+
+            Assert.Equal("Hello", result);
+        }
+        // create local private method to take in a string (same type as Delegate we're checking) and return string
+        string ReturnMessage(string message)
+        {
+            return message;
+        }
+
         [Fact]
         public void DoWhileCheck()
         {
@@ -66,8 +89,10 @@ namespace GradeBook.Tests
         }
         private void SetName(Book book, string name)
         {
-            book.Name = name;
-        }
+            book.Name = name;        // re-changed setter to public so that name can be changed outside after instantiation
+
+            // book.Name = name;     // This line of code  becomes invalid when we set the setter property on Name to private
+        }                           // Meaning the book object name can no longer be altered after the initial instantiation 
 
         [Fact]
         public void CSharpIsPassByValue()
